@@ -23,7 +23,7 @@ class PomodoroStatus(object):
 
 # Defined status
 STOPPED_STATUS = PomodoroStatus("Stopped", float('inf'))
-WORKING_STATUS = PomodoroStatus("Working", 7)
+WORKING_STATUS = PomodoroStatus("Working", 25)
 SHORT_PAUSE_STATUS = PomodoroStatus("Short pause", 5)
 LONG_PAUSE_STATUS = PomodoroStatus("Long pause", 30)
 

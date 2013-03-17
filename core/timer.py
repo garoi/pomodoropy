@@ -26,7 +26,7 @@ class Timer(object):
 
     def start_timer(self, status):
         while (self._mremaining > 0):
-            time.sleep(0.01)
+            time.sleep(1)
             if self._sremaining == 0:
                 self._sremaining = 60
                 self._mremaining -= 1
