@@ -30,9 +30,9 @@ class Timer(object):
 
         if self._end[1] > 59:
             self._end[0] += 1
-            self._end[1] = 0
+            self._end[1] %= 60
             if self._end[0] >= 24:
-                self._end[0] = 0
+                self._end[0] %= 24
         # self.pbar = ProgressBar(widgets=[self._description, Percentage(),
             # Bar(marker='=', left='[', right=']'), Timer()],
             # maxval=self._duration).start()
