@@ -12,6 +12,10 @@ HOUR_IN_SECS = 3600
 class Timer(object):
 
     def __init__(self, description=""):
+        self.minutes_message_3 = False
+        self.minutes_message_6 = False
+        self.minutes_message_15 = False
+        self.minutes_message_20 = False
         self._duration = 0
         self._mremaining = 0
         self._sremaining = 0
@@ -43,8 +47,20 @@ class Timer(object):
             if self._sremaining == 0:
                 self._sremaining = 60
                 self._mremaining -= 1
-            if self._mremaining == 3:
-                Notification("Pomodoro " + status, "3 minutes left.")
+
+            if self._mremaining == 3 and not self.minutes_message_3:
+                Notification("Pomodoro " + str(status), "3 minutes left.")
+                self.minutes_message_3 = True
+            if self._mremaining == 6 and not self.minutes_message_6:
+                Notification("Pomodoro " + str(status), "3 minutes left.")
+                self.minutes_message_6 = True
+            if self._mremaining == 15 and not self.minutes_message_15:
+                Notification("Pomodoro " + str(status), "3 minutes left.")
+                self.minutes_message_15 = True
+            if self._mremaining == 20 and not self.minutes_message_20:
+                Notification("Pomodoro " + str(status), "3 minutes left.")
+                self.minutes_message_20 = True
+
             self._sremaining -= 1
             os.system('clear')
             print "Status: %s" % (status)
