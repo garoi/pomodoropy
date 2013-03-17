@@ -3,7 +3,7 @@ __date__ = "$21/09/2011 17:40:19$"
 
 import time
 import os
-# from progressbar import Bar, FormatLabel, Percentage, ProgressBar, Timer
+from utils.bubble import Notification
 
 MINUTE_IN_SECS = 60
 HOUR_IN_SECS = 3600
@@ -16,10 +16,23 @@ class Timer(object):
         self._mremaining = 0
         self._sremaining = 0
         self._description = description
+        self._started = time.localtime()[3:6]
+        self._end = []
+
+        for seg in self._started:
+            self._end.append(seg)
 
     def set_duration(self, minutes):
         self._duration = minutes
         self._mremaining = minutes
+
+        self._end[1] += self._duration
+
+        if self._end[1] > 59:
+            self._end[0] += 1
+            self._end[1] = 0
+            if self._end[0] >= 24:
+                self._end[0] = 0
         # self.pbar = ProgressBar(widgets=[self._description, Percentage(),
             # Bar(marker='=', left='[', right=']'), Timer()],
             # maxval=self._duration).start()
@@ -30,9 +43,17 @@ class Timer(object):
             if self._sremaining == 0:
                 self._sremaining = 60
                 self._mremaining -= 1
+            if self._mremaining == 3:
+                Notification("Pomodoro " + status, "3 minutes left.")
             self._sremaining -= 1
             os.system('clear')
             print "Status: %s" % (status)
+            print "Started: %d:%d:%d" % (self._started[:])
+            if self._end[1] == 0:
+                mins = '00'
+                print "Will end: %d:%s:%d" % (self._end[0], mins, self._end[2])
+            else:
+                print "Will end: %d:%d:%d" % (self._end[0], self._end[1], self._end[2])
             print "Remaining: %d:%d" % (self._mremaining, self._sremaining)
             # self.pbar.update(self._duration - self._mremaining)
 
