@@ -52,13 +52,13 @@ class Timer(object):
                 Notification("Pomodoro " + str(status), "3 minutes left.")
                 self.minutes_message_3 = True
             if self._mremaining == 6 and not self.minutes_message_6:
-                Notification("Pomodoro " + str(status), "3 minutes left.")
+                Notification("Pomodoro " + str(status), "6 minutes left.")
                 self.minutes_message_6 = True
             if self._mremaining == 15 and not self.minutes_message_15:
-                Notification("Pomodoro " + str(status), "3 minutes left.")
+                Notification("Pomodoro " + str(status), "15 minutes left.")
                 self.minutes_message_15 = True
             if self._mremaining == 20 and not self.minutes_message_20:
-                Notification("Pomodoro " + str(status), "3 minutes left.")
+                Notification("Pomodoro " + str(status), "20 minutes left.")
                 self.minutes_message_20 = True
 
             self._sremaining -= 1
